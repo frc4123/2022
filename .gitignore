@@ -10,7 +10,7 @@
 hs_err_pid*
 
 # Eclipse
-.gradle/
+.gradle
 .classpath
 .project
 .settings/
