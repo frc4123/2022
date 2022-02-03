@@ -19,6 +19,7 @@ import frc.robot.Constants.UsbConstants;
 // import frc.robot.commands.ExampleCommand;
 // import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.commands.ShootCommand;
+import frc.robot.commands.ShootHighCommand;
 import frc.robot.commands.IntakeInCommand;
 import frc.robot.commands.IntakeOutCommand;
 import frc.robot.commands.ElevatorUpCommand;
@@ -44,6 +45,7 @@ public class RobotContainer {
   private final XboxController driverController = new XboxController(UsbConstants.DRIVER_CONTROLLER_PORT);
 
   private final ShootCommand shootCommand = new ShootCommand(shooterSubsystem);
+  private final ShootHighCommand shootHighCommand = new ShootHighCommand(shooterSubsystem);
   private final IntakeInCommand intakeInCommand = new IntakeInCommand(intakeSubsystem);
   private final IntakeOutCommand intakeOutCommand = new IntakeOutCommand(intakeSubsystem);
   private final ElevatorUpCommand elevatorUpCommand = new ElevatorUpCommand(elevatorSubsystem);
@@ -80,6 +82,7 @@ public class RobotContainer {
     POVButton povLeft = new POVButton(driverController, 90);
     POVButton povRight = new POVButton(driverController, 270);
 
+    lb.whileHeld(shootHighCommand);
     rb.whileHeld(shootCommand);
     povUp.whileHeld(elevatorUpCommand);
     povDown.whileHeld(elevatorDownCommand);
