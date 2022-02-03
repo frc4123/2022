@@ -19,13 +19,13 @@ import frc.robot.Constants.UsbConstants;
 // import frc.robot.commands.ExampleCommand;
 // import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.commands.ShootCommand;
-import frc.robot.commands.IndexInCommand;
-import frc.robot.commands.IndexOutCommand;
+import frc.robot.commands.IntakeInCommand;
+import frc.robot.commands.IntakeOutCommand;
 import frc.robot.commands.ElevatorUpCommand;
 import frc.robot.commands.ElevatorDownCommand;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.subsystems.IndexerSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -38,14 +38,14 @@ public class RobotContainer {
 
   private final Drivetrain drivetrain = new Drivetrain();
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
-  private final IndexerSubsystem indexerSubsystem = new IndexerSubsystem();
+  private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   private final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
 
   private final XboxController driverController = new XboxController(UsbConstants.DRIVER_CONTROLLER_PORT);
 
   private final ShootCommand shootCommand = new ShootCommand(shooterSubsystem);
-  private final IndexInCommand indexInCommand = new IndexInCommand(indexerSubsystem);
-  private final IndexOutCommand indexOutCommand = new IndexOutCommand(indexerSubsystem);
+  private final IntakeInCommand intakeInCommand = new IntakeInCommand(intakeSubsystem);
+  private final IntakeOutCommand intakeOutCommand = new IntakeOutCommand(intakeSubsystem);
   private final ElevatorUpCommand elevatorUpCommand = new ElevatorUpCommand(elevatorSubsystem);
   private final ElevatorDownCommand elevatorDownCommand = new ElevatorDownCommand(elevatorSubsystem);
   // The robot's subsystems and commands are defined here...
@@ -81,10 +81,10 @@ public class RobotContainer {
     POVButton povRight = new POVButton(driverController, 270);
 
     rb.whileHeld(shootCommand);
-    x.whileHeld(indexInCommand);
-    y.whileHeld(indexOutCommand);
     povUp.whileHeld(elevatorUpCommand);
     povDown.whileHeld(elevatorDownCommand);
+    povLeft.whileHeld(intakeOutCommand);
+    povRight.whileHeld(intakeInCommand);
   }
 
   /**
