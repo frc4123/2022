@@ -22,11 +22,14 @@ import frc.robot.commands.ShootCommand;
 import frc.robot.commands.ShootHighCommand;
 import frc.robot.commands.IntakeInCommand;
 import frc.robot.commands.IntakeOutCommand;
+import frc.robot.commands.IntakeDrawDownCommand;
+import frc.robot.commands.IntakeDrawUpCommand;
 import frc.robot.commands.ElevatorUpCommand;
 import frc.robot.commands.ElevatorDownCommand;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.IntakeDrawSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -40,6 +43,7 @@ public class RobotContainer {
   private final Drivetrain drivetrain = new Drivetrain();
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+  private final IntakeDrawSubsystem intakeDrawSubsystem = new IntakeDrawSubsystem();
   private final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
 
   private final XboxController driverController = new XboxController(UsbConstants.DRIVER_CONTROLLER_PORT);
@@ -48,6 +52,8 @@ public class RobotContainer {
   private final ShootHighCommand shootHighCommand = new ShootHighCommand(shooterSubsystem);
   private final IntakeInCommand intakeInCommand = new IntakeInCommand(intakeSubsystem);
   private final IntakeOutCommand intakeOutCommand = new IntakeOutCommand(intakeSubsystem);
+  private final IntakeDrawDownCommand intakeDrawDownCommand = new IntakeDrawDownCommand(intakeDrawSubsystem);
+  private final IntakeDrawUpCommand intakeDrawUpCommand = new IntakeDrawUpCommand(intakeDrawSubsystem);
   private final ElevatorUpCommand elevatorUpCommand = new ElevatorUpCommand(elevatorSubsystem);
   private final ElevatorDownCommand elevatorDownCommand = new ElevatorDownCommand(elevatorSubsystem);
   // The robot's subsystems and commands are defined here...
@@ -84,10 +90,12 @@ public class RobotContainer {
 
     lb.whileHeld(shootHighCommand);
     rb.whileHeld(shootCommand);
+    a.whenHeld(intakeDrawDownCommand);
+    b.whenHeld(intakeDrawUpCommand);
+    x.whileHeld(intakeInCommand);
+    y.whileHeld(intakeOutCommand);
     povUp.whileHeld(elevatorUpCommand);
     povDown.whileHeld(elevatorDownCommand);
-    povLeft.whileHeld(intakeOutCommand);
-    povRight.whileHeld(intakeInCommand);
   }
 
   /**
