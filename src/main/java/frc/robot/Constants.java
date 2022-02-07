@@ -106,6 +106,7 @@ public final class Constants {
         public static final int INTAKE_MASTER_ID = 7;
         public static final int ELEVATOR_MASTER_ID = 8;
         public static final int INTAKE_DRAW_ID = 9;
+        public static final int CLIMBER_MASTER_ID = 10;
     }
 
     /**
