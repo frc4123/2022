@@ -26,11 +26,15 @@ import frc.robot.commands.IntakeDrawDownCommand;
 import frc.robot.commands.IntakeDrawUpCommand;
 import frc.robot.commands.ElevatorUpCommand;
 import frc.robot.commands.ElevatorDownCommand;
+import frc.robot.commands.ClimberUpCommand;
+import frc.robot.commands.ClimberDownCommand;
+
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.IntakeDrawSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -38,13 +42,12 @@ import frc.robot.subsystems.ElevatorSubsystem;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-
-
   private final Drivetrain drivetrain = new Drivetrain();
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   private final IntakeDrawSubsystem intakeDrawSubsystem = new IntakeDrawSubsystem();
   private final ElevatorSubsystem elevatorSubsystem = new ElevatorSubsystem();
+  private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
 
   private final XboxController driverController = new XboxController(UsbConstants.DRIVER_CONTROLLER_PORT);
 
@@ -56,6 +59,8 @@ public class RobotContainer {
   private final IntakeDrawUpCommand intakeDrawUpCommand = new IntakeDrawUpCommand(intakeDrawSubsystem);
   private final ElevatorUpCommand elevatorUpCommand = new ElevatorUpCommand(elevatorSubsystem);
   private final ElevatorDownCommand elevatorDownCommand = new ElevatorDownCommand(elevatorSubsystem);
+  private final ClimberUpCommand climberUpCommand = new ClimberUpCommand(climberSubsystem);
+  private final ClimberDownCommand climberDownCommand = new ClimberDownCommand(climberSubsystem);
   // The robot's subsystems and commands are defined here...
   // private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
@@ -96,6 +101,8 @@ public class RobotContainer {
     y.whileHeld(intakeOutCommand);
     povUp.whileHeld(elevatorUpCommand);
     povDown.whileHeld(elevatorDownCommand);
+    povLeft.whileHeld(climberUpCommand);
+    povRight.whileHeld(climberDownCommand);
   }
 
   /**
@@ -107,4 +114,14 @@ public class RobotContainer {
   //   // An ExampleCommand will run in autonomous
   //   return m_autoCommand;
   // }
+  
+  /**
+     * This {@link #driverController}. This is an {@link XboxController} that is
+     * used by the main driver of the robot.
+     *
+     * @return this {@link #driverController}
+     */
+  public XboxController getDriverController() {
+    return driverController;
+  }
 }
