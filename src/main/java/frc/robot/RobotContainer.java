@@ -88,13 +88,15 @@ public class RobotContainer {
     Button b = new JoystickButton(driverController, XboxConstants.B_BUTTON);
     Button x = new JoystickButton(driverController, XboxConstants.X_BUTTON);
     Button y = new JoystickButton(driverController, XboxConstants.Y_BUTTON);
+    Button lButton = new JoystickButton(driverController, XboxConstants.LEFT_STICK);
+    Button rButton = new JoystickButton(driverController, XboxConstants.RIGHT_STICK);
     POVButton povUp = new POVButton(driverController, 0);
     POVButton povDown = new POVButton(driverController, 180);
     POVButton povLeft = new POVButton(driverController, 90);
     POVButton povRight = new POVButton(driverController, 270);
 
-    lb.whileHeld(shootHighCommand);
-    rb.whileHeld(shootCommand);
+    lButton.whileHeld(shootHighCommand);
+    rButton.whileHeld(shootCommand);
     a.whenHeld(intakeDrawDownCommand);
     b.whenHeld(intakeDrawUpCommand);
     x.whileHeld(intakeInCommand);
