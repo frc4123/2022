@@ -4,9 +4,9 @@
 
 package frc.robot;
 
-// import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
-// import edu.wpi.first.wpilibj.kinematics.DifferentialDriveKinematics;
-// import edu.wpi.first.wpilibj.util.Units;
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.math.util.Units;
 
 public final class Constants {
     /** USB ports on the computer */
@@ -130,11 +130,11 @@ public final class Constants {
         public static final double STARTING_POSE_Y = 0;
         public static final boolean IS_GYRO_REVERSED_FOR_PATHWEAVER = true;
 
-        // public static final DifferentialDriveKinematics DRIVE_KINEMATICS = new DifferentialDriveKinematics(
-        //         DriveConstants.TRACK_WIDTH_METERS);
+        public static final DifferentialDriveKinematics DRIVE_KINEMATICS = new DifferentialDriveKinematics(
+                 DriveConstants.TRACK_WIDTH_METERS);
 
-        // public static final SimpleMotorFeedforward SIMPLE_MOTOR_FEED_FOrWARD = new SimpleMotorFeedforward(
-        //         TrajectoryConstants.KS, TrajectoryConstants.KV, TrajectoryConstants.KA);
+        public static final SimpleMotorFeedforward SIMPLE_MOTOR_FEED_FOrWARD = new SimpleMotorFeedforward(
+                 TrajectoryConstants.KS, TrajectoryConstants.KV, TrajectoryConstants.KA);
     }
 
     /**
