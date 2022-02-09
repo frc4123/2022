@@ -111,7 +111,7 @@ public final class Constants {
 
     /**
      * Values relating to path finding and trajectory following. See
-     * {@see FourMeterAuto}
+     * {@see TwoMeterAuto}
      */
     public static final class TrajectoryConstants {
 
