@@ -14,7 +14,7 @@ public class ElevatorUpCommand extends CommandBase{
 
     @Override
     public void execute() {
-        elevatorSubsystem.setElevatorVelo(0.55);
+        elevatorSubsystem.setElevatorVelo(0.5);
     }
 
     @Override
