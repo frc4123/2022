@@ -108,6 +108,8 @@ public class RobotContainer {
     povUpRight.whileHeld(elevatorUpCommand);
     povUpLeft.whileHeld(elevatorUpCommand);
     povDown.whileHeld(elevatorDownCommand);
+    povDownRight.whileHeld(elevatorDownCommand);
+    povDownLeft.whileHeld(elevatorDownCommand);
     povRight.whileHeld(climberUpCommand);
     povLeft.whileHeld(climberDownCommand);
   }
