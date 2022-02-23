@@ -19,7 +19,7 @@ public class IntakeDrawDownCommand extends CommandBase {
 
     @Override
     public void execute() {
-        intakeDrawSubsystem.setIntakeDrawVelo(-0.1);
+        intakeDrawSubsystem.setIntakeDrawVelo(-0.5);
     }
 
     @Override
