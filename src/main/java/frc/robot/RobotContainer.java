@@ -50,6 +50,7 @@ public class RobotContainer {
   private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
 
   private final XboxController driverController = new XboxController(UsbConstants.DRIVER_CONTROLLER_PORT);
+  private final XboxController driverController2 = new XboxController(UsbConstants.AUXDRIVER_CONTROLLER_PORT);
 
   private final ShootCommand shootCommand = new ShootCommand(shooterSubsystem);
   private final ShootHighCommand shootHighCommand = new ShootHighCommand(shooterSubsystem);
@@ -84,27 +85,31 @@ public class RobotContainer {
   private void configureButtonBindings() {
     Button lb = new JoystickButton(driverController, XboxConstants.LB_BUTTON);
     Button rb = new JoystickButton(driverController, XboxConstants.RB_BUTTON);
-    Button a = new JoystickButton(driverController, XboxConstants.A_BUTTON);
-    Button b = new JoystickButton(driverController, XboxConstants.B_BUTTON);
-    Button x = new JoystickButton(driverController, XboxConstants.X_BUTTON);
-    Button y = new JoystickButton(driverController, XboxConstants.Y_BUTTON);
-    Button lButton = new JoystickButton(driverController, XboxConstants.LEFT_STICK);
-    Button rButton = new JoystickButton(driverController, XboxConstants.RIGHT_STICK);
+    Button a = new JoystickButton(driverController2, XboxConstants.A_BUTTON);
+    Button b = new JoystickButton(driverController2, XboxConstants.B_BUTTON);
+    Button x = new JoystickButton(driverController2, XboxConstants.X_BUTTON);
+    Button y = new JoystickButton(driverController2, XboxConstants.Y_BUTTON);
     POVButton povUp = new POVButton(driverController, 0);
+    POVButton povUpRight = new POVButton(driverController, 45);
+    POVButton povRight = new POVButton(driverController, 90);
+    POVButton povDownRight = new POVButton(driverController, 135);
     POVButton povDown = new POVButton(driverController, 180);
-    POVButton povLeft = new POVButton(driverController, 90);
-    POVButton povRight = new POVButton(driverController, 270);
+    POVButton povDownLeft = new POVButton(driverController, 225);
+    POVButton povLeft = new POVButton(driverController, 270);
+    POVButton povUpLeft = new POVButton(driverController, 315);
 
-    lButton.whileHeld(shootHighCommand);
-    rButton.whileHeld(shootCommand);
-    a.whenHeld(intakeDrawDownCommand);
-    b.whenHeld(intakeDrawUpCommand);
+    lb.whenHeld(shootHighCommand);
+    rb.whenHeld(shootCommand);
+    a.whenHeld(intakeDrawUpCommand);
+    b.whenHeld(intakeDrawDownCommand);
     x.whileHeld(intakeInCommand);
     y.whileHeld(intakeOutCommand);
     povUp.whileHeld(elevatorUpCommand);
+    povUpRight.whileHeld(elevatorUpCommand);
+    povUpLeft.whileHeld(elevatorUpCommand);
     povDown.whileHeld(elevatorDownCommand);
-    povLeft.whileHeld(climberUpCommand);
-    povRight.whileHeld(climberDownCommand);
+    povRight.whileHeld(climberUpCommand);
+    povLeft.whileHeld(climberDownCommand);
   }
 
   /**
