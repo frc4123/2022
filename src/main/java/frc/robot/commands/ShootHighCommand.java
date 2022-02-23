@@ -14,7 +14,7 @@ public class ShootHighCommand extends CommandBase{
     
     @Override
     public void execute() {
-        shooterSubsystem.setShooterVelo(0.8);
+        shooterSubsystem.setShooterVelo(0.5);
     }
 
     @Override
