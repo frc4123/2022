@@ -12,7 +12,7 @@ public class ShooterSubsystem extends SubsystemBase{
     private final TalonSRX shooter = new TalonSRX(CanIdConstants.SHOOTER_MASTER_ID);
 
     public ShooterSubsystem(){
-        shooter.configOpenloopRamp(1);
+        shooter.configOpenloopRamp(1.75);
         shooter.setNeutralMode(NeutralMode.Brake);
     }
 
