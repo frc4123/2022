@@ -35,7 +35,6 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.IntakeDrawSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
-import frc.robot.utils.ShuffleBoardHelper;
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
@@ -52,7 +51,6 @@ public class RobotContainer {
 
   private final XboxController driverController = new XboxController(UsbConstants.DRIVER_CONTROLLER_PORT);
   private final XboxController driverController2 = new XboxController(UsbConstants.AUXDRIVER_CONTROLLER_PORT);
-  private ShuffleBoardHelper shuffleBoardHelper;
 
   private final ShootCommand shootCommand = new ShootCommand(shooterSubsystem);
   private final ShootHighCommand shootHighCommand = new ShootHighCommand(shooterSubsystem);
@@ -121,9 +119,7 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
-    return new SequentialCommandGroup(shuffleBoardHelper.getSelectedCommand(), shootCommand.withTimeout(5));
-  }
+  //public Command getAutonomousCommand() {}
   
   /**
      * This {@link #driverController}. This is an {@link XboxController} that is
