@@ -16,8 +16,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.robot.Constants.UsbConstants;
 
-// import frc.robot.commands.ExampleCommand;
-// import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.commands.ShootCommand;
 import frc.robot.commands.ShootHighCommand;
 import frc.robot.commands.IntakeInCommand;
@@ -35,12 +33,9 @@ import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.IntakeDrawSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
-/**
- * This class is where the bulk of the robot should be declared. Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
- * subsystems, commands, and button mappings) should be declared here.
- */
+
+import frc.robot.utils.TwoMeterAuto;
+
 public class RobotContainer {
   private final Drivetrain drivetrain = new Drivetrain();
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
@@ -62,26 +57,25 @@ public class RobotContainer {
   private final ElevatorDownCommand elevatorDownCommand = new ElevatorDownCommand(elevatorSubsystem);
   private final ClimberUpCommand climberUpCommand = new ClimberUpCommand(climberSubsystem);
   private final ClimberDownCommand climberDownCommand = new ClimberDownCommand(climberSubsystem);
-  // The robot's subsystems and commands are defined here...
-  // private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  // private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final TwoMeterAuto twoMeterAuto = new TwoMeterAuto(drivetrain);
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
-  public RobotContainer() {
-    // Configure the button bindings
-    configureButtonBindings();
-
-    drivetrain.setDefaultCommand(new RunCommand(() -> drivetrain.arcadeDrive(driverController.getRightX(),
-        driverController.getLeftY()), drivetrain));
+  private void calibrate() {
+    System.out.println("Gyro is calibrating...");
+    drivetrain.calibrateGyro();
   }
 
-  /**
-   * Use this method to define your button->command mappings. Buttons can be created by
-   * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
-   * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-   */
+  public RobotContainer() {
+    // add negative (-) to getLeftY to invert drive (shooter will be the back, intake will be the front)
+    calibrate();
+    configureButtonBindings();
+
+    drivetrain.setDefaultCommand(new RunCommand(() -> drivetrain.arcadeDrive(
+      driverController.getRightX(),
+      driverController.getLeftY()),
+      drivetrain));
+  }
+
   private void configureButtonBindings() {
     Button lb = new JoystickButton(driverController, XboxConstants.LB_BUTTON);
     Button rb = new JoystickButton(driverController, XboxConstants.RB_BUTTON);
@@ -100,8 +94,8 @@ public class RobotContainer {
 
     lb.whenHeld(shootHighCommand);
     rb.whenHeld(shootCommand);
-    a.whenHeld(intakeDrawUpCommand);
-    b.whenHeld(intakeDrawDownCommand);
+    a.whenHeld(intakeDrawDownCommand);
+    b.whenHeld(intakeDrawUpCommand);
     x.whileHeld(intakeInCommand);
     y.whileHeld(intakeOutCommand);
     povUp.whileHeld(elevatorUpCommand);
@@ -119,9 +113,11 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  //public Command getAutonomousCommand() {}
+  public Command getAutonomousCommand() {
+    return new SequentialCommandGroup(twoMeterAuto.getCommand(), shootCommand.perpetually());
+  }
   
-  /**
+  /** 
      * This {@link #driverController}. This is an {@link XboxController} that is
      * used by the main driver of the robot.
      *
