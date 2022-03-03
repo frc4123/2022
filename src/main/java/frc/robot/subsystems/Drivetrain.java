@@ -12,6 +12,12 @@ import com.ctre.phoenix.motorcontrol.TalonSRXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import java.util.Map;
+
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.math.estimator.DifferentialDrivePoseEstimator;
@@ -81,14 +87,13 @@ public class Drivetrain extends SubsystemBase {
 
     pathList = List.of(
       TrajectoryGenerator.generateTrajectory(new Pose2d(0, 0, new Rotation2d(0)),
-        List.of(new Translation2d(1, 0)), new Pose2d(3, 0, new Rotation2d(0)), config),
-      TrajectoryGenerator.generateTrajectory(new Pose2d(0, 0, new Rotation2d(0)),
-        List.of(new Translation2d(2, 0)), new Pose2d(4, 0, new Rotation2d(0)), config));
+        List.of(new Translation2d(1, 0)), new Pose2d(2, 0, new Rotation2d(0)), config));
     resetEncoders();
   }
   
   public void arcadeDrive(double speed, double direction){
-    differentialDrive.arcadeDrive(speed, direction);
+    double max = maxSpeed.getDouble(1.0);
+    differentialDrive.arcadeDrive(speed * max, direction * max);
   }
 
   /**
@@ -103,6 +108,13 @@ public class Drivetrain extends SubsystemBase {
       rightMaster.setVoltage(-rightVolts);
       differentialDrive.feed();
   }
+
+  private ShuffleboardTab tab = Shuffleboard.getTab("Main");
+  public NetworkTableEntry maxSpeed = 
+    tab.addPersistent("Max Speed", 1)
+      .withWidget(BuiltInWidgets.kNumberSlider)
+      .withProperties(Map.of("min", 0, "max", 1))
+      .getEntry();
 
   /** Calibrates the gyro. */
   public void calibrateGyro() {
@@ -149,7 +161,7 @@ public class Drivetrain extends SubsystemBase {
     private double getLeftWheelPosition() {
       // TODO remove gear ratio when using talonsrxs
       return ((leftMaster.getSelectedSensorPosition() * DriveConstants.WHEEL_CIRCUMFERENCE_METERS
-              / DriveConstants.TALONFX_ENCODER_CPR) / DriveConstants.GEAR_RATIO);
+              / DriveConstants.MAG_ENCODER_CPR));
   }
 
   /**
@@ -160,7 +172,7 @@ public class Drivetrain extends SubsystemBase {
     */
     private double getRightWheelPosition() {
       return ((leftMaster.getSelectedSensorPosition() * DriveConstants.WHEEL_CIRCUMFERENCE_METERS
-              / DriveConstants.TALONFX_ENCODER_CPR) / DriveConstants.GEAR_RATIO);
+              / DriveConstants.MAG_ENCODER_CPR));
   }
 
   /**
@@ -171,8 +183,8 @@ public class Drivetrain extends SubsystemBase {
     *         wheelbase
     */
     private double getLeftWheelSpeed() {
-      return (leftMaster.getSelectedSensorVelocity(0) * 10 / DriveConstants.TALONFX_ENCODER_CPR
-              / DriveConstants.GEAR_RATIO * DriveConstants.WHEEL_CIRCUMFERENCE_METERS);
+      return (leftMaster.getSelectedSensorVelocity(0) * 10 / DriveConstants.MAG_ENCODER_CPR 
+        * DriveConstants.WHEEL_CIRCUMFERENCE_METERS);
   }
 
   /**
@@ -183,8 +195,8 @@ public class Drivetrain extends SubsystemBase {
     *         wheelbase
     */
     private double getRightWheelSpeed() {
-      return (leftMaster.getSelectedSensorVelocity(0) * 10 / DriveConstants.TALONFX_ENCODER_CPR
-              / DriveConstants.GEAR_RATIO * DriveConstants.WHEEL_CIRCUMFERENCE_METERS);
+      return (leftMaster.getSelectedSensorVelocity(0) * 10 / DriveConstants.MAG_ENCODER_CPR
+        * DriveConstants.WHEEL_CIRCUMFERENCE_METERS);
   }
 
   /**
