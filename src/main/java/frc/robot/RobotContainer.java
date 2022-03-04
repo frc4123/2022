@@ -94,9 +94,9 @@ public class RobotContainer {
 
     lb.whenHeld(shootHighCommand);
     rb.whenHeld(shootCommand);
-    a.whenHeld(intakeDrawDownCommand);
+    a.whenHeld(intakeInCommand);
     b.whenHeld(intakeDrawUpCommand);
-    x.whileHeld(intakeInCommand);
+    x.whileHeld(intakeDrawDownCommand);
     y.whileHeld(intakeOutCommand);
     povUp.whileHeld(elevatorUpCommand);
     povUpRight.whileHeld(elevatorUpCommand);
