@@ -12,11 +12,13 @@ import com.ctre.phoenix.motorcontrol.TalonSRXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+/**
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import java.util.Map;
+*/
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.SPI;
@@ -92,8 +94,11 @@ public class Drivetrain extends SubsystemBase {
   }
   
   public void arcadeDrive(double speed, double direction){
+    /**
     double max = maxSpeed.getDouble(1.0);
     differentialDrive.arcadeDrive(speed * max, direction * max);
+    */
+    differentialDrive.arcadeDrive(speed, direction);
   }
 
   /**
@@ -109,12 +114,14 @@ public class Drivetrain extends SubsystemBase {
       differentialDrive.feed();
   }
 
+  /**
   private ShuffleboardTab tab = Shuffleboard.getTab("Main");
   public NetworkTableEntry maxSpeed = 
     tab.addPersistent("Max Speed", 1)
       .withWidget(BuiltInWidgets.kNumberSlider)
       .withProperties(Map.of("min", 0, "max", 1))
       .getEntry();
+  */
 
   /** Calibrates the gyro. */
   public void calibrateGyro() {
