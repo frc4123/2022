@@ -59,7 +59,6 @@ public class RobotContainer {
   private final ElevatorDownCommand elevatorDownCommand = new ElevatorDownCommand(elevatorSubsystem);
   private final ClimberUpCommand climberUpCommand = new ClimberUpCommand(climberSubsystem);
   private final ClimberDownCommand climberDownCommand = new ClimberDownCommand(climberSubsystem);
-  private final AutoDriveBackCommand autoDriveBackCommand = new AutoDriveBackCommand(drivetrain);
 
   private final TwoMeterAuto twoMeterAuto = new TwoMeterAuto(drivetrain);
 
