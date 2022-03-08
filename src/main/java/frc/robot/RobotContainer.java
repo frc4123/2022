@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants.UsbConstants;
 
 import frc.robot.commands.ShootCommand;
@@ -26,6 +27,7 @@ import frc.robot.commands.ElevatorUpCommand;
 import frc.robot.commands.ElevatorDownCommand;
 import frc.robot.commands.ClimberUpCommand;
 import frc.robot.commands.ClimberDownCommand;
+import frc.robot.commands.AutoDriveBackCommand;
 
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ShooterSubsystem;
@@ -57,6 +59,7 @@ public class RobotContainer {
   private final ElevatorDownCommand elevatorDownCommand = new ElevatorDownCommand(elevatorSubsystem);
   private final ClimberUpCommand climberUpCommand = new ClimberUpCommand(climberSubsystem);
   private final ClimberDownCommand climberDownCommand = new ClimberDownCommand(climberSubsystem);
+  private final AutoDriveBackCommand autoDriveBackCommand = new AutoDriveBackCommand(drivetrain);
 
   private final TwoMeterAuto twoMeterAuto = new TwoMeterAuto(drivetrain);
 
@@ -114,7 +117,11 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return new SequentialCommandGroup(shootCommand.alongWith(elevatorUpCommand.withTimeout(5)), twoMeterAuto.getCommand());
+    //return new SequentialCommandGroup(shootCommand.alongWith(elevatorUpCommand.withTimeout(5)), twoMeterAuto.getCommand());
+    return new WaitCommand(.2)
+    .andThen(new ShootCommand(shooterSubsystem)).alongWith(new WaitCommand(4)
+    .andThen(new ElevatorUpCommand(elevatorSubsystem))).withTimeout(7)
+    .andThen(new AutoDriveBackCommand(drivetrain).withTimeout(7));
   }
   
   /** 
