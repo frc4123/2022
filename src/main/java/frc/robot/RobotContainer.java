@@ -122,14 +122,4 @@ public class RobotContainer {
     .andThen(new ElevatorUpCommand(elevatorSubsystem))).withTimeout(7)
     .andThen(new AutoDriveBackCommand(drivetrain).withTimeout(7));
   }
-  
-  /** 
-     * This {@link #driverController}. This is an {@link XboxController} that is
-     * used by the main driver of the robot.
-     *
-     * @return this {@link #driverController}
-     */
-  public XboxController getDriverController() {
-    return driverController;
-  }
 }
