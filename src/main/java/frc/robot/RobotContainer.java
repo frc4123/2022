@@ -6,11 +6,9 @@ package frc.robot;
 
 import static frc.robot.Constants.*;
 
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
@@ -36,7 +34,6 @@ import frc.robot.subsystems.IntakeDrawSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 
-import frc.robot.utils.TwoMeterAuto;
 
 public class RobotContainer {
   private final Drivetrain drivetrain = new Drivetrain();
@@ -59,8 +56,6 @@ public class RobotContainer {
   private final ElevatorDownCommand elevatorDownCommand = new ElevatorDownCommand(elevatorSubsystem);
   private final ClimberUpCommand climberUpCommand = new ClimberUpCommand(climberSubsystem);
   private final ClimberDownCommand climberDownCommand = new ClimberDownCommand(climberSubsystem);
-
-  private final TwoMeterAuto twoMeterAuto = new TwoMeterAuto(drivetrain);
 
   private void calibrate() {
     System.out.println("Gyro is calibrating...");
