@@ -19,7 +19,7 @@ public class AutoDriveBackCommand extends CommandBase{
 
     @Override
     public void execute(){
-        drivetrain.arcadeDrive(-0.55, 0);
+        drivetrain.arcadeDrive(0, 0.55);
     }
 
     @Override

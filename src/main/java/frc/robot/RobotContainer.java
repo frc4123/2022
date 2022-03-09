@@ -120,6 +120,6 @@ public class RobotContainer {
     return new WaitCommand(.2)
     .andThen(new ShootCommand(shooterSubsystem)).alongWith(new WaitCommand(4)
     .andThen(new ElevatorUpCommand(elevatorSubsystem))).withTimeout(7)
-    .andThen(new AutoDriveBackCommand(drivetrain).withTimeout(7));
+    .andThen(new AutoDriveBackCommand(drivetrain).withTimeout(3.8));
   }
 }

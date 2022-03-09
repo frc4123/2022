@@ -31,7 +31,7 @@ public class ShootCommand extends CommandBase{
         double max = maxSpeed.getDouble(0.2125);
         shooterSubsystem.setShooterVelo(1 * max);
         */
-        shooterSubsystem.setShooterVelo(0.2125);
+        shooterSubsystem.setShooterVelo(0.3125);
     }
 
     @Override

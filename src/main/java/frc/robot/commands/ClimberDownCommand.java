@@ -14,7 +14,7 @@ public class ClimberDownCommand extends CommandBase{
 
     @Override
     public void execute() {
-        climberSubsystem.setClimberVelo(-0.4);
+        climberSubsystem.setClimberVelo(-0.6);
     }
 
     @Override

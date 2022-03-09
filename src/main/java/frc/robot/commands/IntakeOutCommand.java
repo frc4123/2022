@@ -31,7 +31,7 @@ public class IntakeOutCommand extends CommandBase{
         double max = maxSpeed.getDouble(-0.3);
         intakeSubsystem.setIntakeVelo(1 * max);
         */
-        intakeSubsystem.setIntakeVelo(-0.3);
+        intakeSubsystem.setIntakeVelo(-0.35);
     }
 
     @Override

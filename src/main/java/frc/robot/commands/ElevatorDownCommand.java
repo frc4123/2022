@@ -31,7 +31,7 @@ public class ElevatorDownCommand extends CommandBase{
         double max = maxSpeed.getDouble(-0.5);
         elevatorSubsystem.setElevatorVelo(1 * max);
         */
-        elevatorSubsystem.setElevatorVelo(-0.5);
+        elevatorSubsystem.setElevatorVelo(-0.4);
     }
 
     @Override
