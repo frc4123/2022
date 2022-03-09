@@ -111,7 +111,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    //return new SequentialCommandGroup(shootCommand.alongWith(elevatorUpCommand.withTimeout(5)), twoMeterAuto.getCommand());
     return new WaitCommand(.2)
     .andThen(new ShootCommand(shooterSubsystem)).alongWith(new WaitCommand(4)
     .andThen(new ElevatorUpCommand(elevatorSubsystem))).withTimeout(7)
