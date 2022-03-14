@@ -4,10 +4,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.math.controller.SimpleMotorFeedforward;
-import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
-// import edu.wpi.first.math.util.Units;
-
 public final class Constants {
     /** USB ports on the computer */
     public static final class UsbConstants {
@@ -107,63 +103,5 @@ public final class Constants {
         public static final int ELEVATOR_MASTER_ID = 8;
         public static final int INTAKE_DRAW_ID = 9;
         public static final int CLIMBER_MASTER_ID = 10;
-    }
-
-    /**
-     * Values relating to path finding and trajectory following. See
-     * {@see TwoMeterAuto}
-     */
-    public static final class TrajectoryConstants {
-
-        public static final double KS = 1.2;
-        public static final double KV = 0.329;
-        public static final double KA = 0.0933;
-        public static final double KP = 8.5;
-
-        public static final double RAMSETE_B = 2.0;
-        public static final double RAMSETE_ZETA = 0.7;
-
-        public static final double MAX_VELOCITY = 7;
-        public static final double MAX_ACCELERATION = 7;
-
-        public static final double STARTING_POSE_X = 0;
-        public static final double STARTING_POSE_Y = 0;
-        public static final boolean IS_GYRO_REVERSED_FOR_PATHWEAVER = true;
-
-        public static final DifferentialDriveKinematics DRIVE_KINEMATICS = new DifferentialDriveKinematics(
-                 DriveConstants.TRACK_WIDTH_METERS);
-
-        public static final SimpleMotorFeedforward SIMPLE_MOTOR_FEED_FOrWARD = new SimpleMotorFeedforward(
-                 TrajectoryConstants.KS, TrajectoryConstants.KV, TrajectoryConstants.KA);
-    }
-
-    /**
-     * Values relating to the auto-aim feature of the robot. See
-     * {@see AutoAimCommand}.
-     */
-    public static final class AutoAimConstants {
-        // !MAKE SURE THIS IS RIGHT
-        // see if we can just pull this from Network tables
-        public static final String CAMERA_NAME = "Microsoft_LifeCam_HD-3000";
-        // !CHARACTERIZE THE ROBOT FOR THESE VALUES
-        public static final double KP = 0.009;
-        public static final double KI = 0.0;
-        public static final double KD = 0.01;
-        public static final double FFW = 0.29;
-        // public static final double KA = 0;
-        // public static final double KV = 0;
-        // public static final double KS = 0;
-
-        /** Tolerance for the Vision PID. Units are in degrees. */
-        public static final double TOLERANCE = 0.1;
-
-        // TODO get these values
-        // public static final double CAMERA_HEIGHT_METERS = Units.inchesToMeters(21.375);
-        // // 73.25
-        // // 53
-        // // taller gives longer distance
-        // public static final double TARGET_HEIGHT_METERS = Units.inchesToMeters(83);
-        // // measures 28 but gives bad result, so 23 is used
-        // public static final double CAMERA_PITCH_RADIANS = Units.degreesToRadians(23);
     }
 }
