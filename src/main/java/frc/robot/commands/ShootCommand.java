@@ -12,13 +12,6 @@ import frc.robot.subsystems.ShooterSubsystem;
 
 public class ShootCommand extends CommandBase{
     ShooterSubsystem shooterSubsystem;
-    /**
-    private ShuffleboardTab tab = Shuffleboard.getTab("Main");
-    public NetworkTableEntry maxSpeed = 
-    tab.add("Shooter Low Speed", 1)
-        .withWidget(BuiltInWidgets.kTextView)
-        .getEntry();
-    */
 
     public ShootCommand(ShooterSubsystem shooterSubsystem) {
         this.shooterSubsystem = shooterSubsystem;
@@ -27,10 +20,6 @@ public class ShootCommand extends CommandBase{
     
     @Override
     public void execute() {
-        /**
-        double max = maxSpeed.getDouble(0.2125);
-        shooterSubsystem.setShooterVelo(1 * max);
-        */
         shooterSubsystem.setShooterVelo(0.3125);
     }
 
