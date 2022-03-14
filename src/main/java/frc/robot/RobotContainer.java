@@ -1,7 +1,3 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
-
 package frc.robot;
 
 import static frc.robot.Constants.*;
@@ -57,14 +53,8 @@ public class RobotContainer {
   private final ClimberUpCommand climberUpCommand = new ClimberUpCommand(climberSubsystem);
   private final ClimberDownCommand climberDownCommand = new ClimberDownCommand(climberSubsystem);
 
-  private void calibrate() {
-    System.out.println("Gyro is calibrating...");
-    drivetrain.calibrateGyro();
-  }
-
   public RobotContainer() {
     // add negative (-) to getLeftY to invert drive (shooter will be the back, intake will be the front)
-    calibrate();
     configureButtonBindings();
 
     drivetrain.setDefaultCommand(new RunCommand(() -> drivetrain.arcadeDrive(
@@ -113,7 +103,7 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     return new WaitCommand(.2)
     .andThen(new ShootCommand(shooterSubsystem)).alongWith(new WaitCommand(4)
-    .andThen(new ElevatorUpCommand(elevatorSubsystem))).withTimeout(7)
+    .andThen(new ElevatorUpCommand(elevatorSubsystem))).withTimeout(6)
     .andThen(new AutoDriveBackCommand(drivetrain).withTimeout(3.8));
   }
 }
