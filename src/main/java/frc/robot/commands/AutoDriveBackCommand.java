@@ -13,11 +13,6 @@ public class AutoDriveBackCommand extends CommandBase{
     }
 
     @Override
-    public void initialize() {
-        drivetrain.resetEncoders();
-    }
-
-    @Override
     public void execute(){
         drivetrain.arcadeDrive(0, 0.55);
     }
