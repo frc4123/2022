@@ -95,11 +95,6 @@ public class RobotContainer {
     povLeft.whileHeld(climberDownCommand);
   }
 
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
   public Command getAutonomousCommand() {
     return new WaitCommand(.2)
     .andThen(new ShootCommand(shooterSubsystem)).alongWith(new WaitCommand(4)
