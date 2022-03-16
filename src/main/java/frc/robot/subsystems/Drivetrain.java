@@ -18,16 +18,6 @@ public class Drivetrain extends SubsystemBase {
   private final DifferentialDrive differentialDrive = new DifferentialDrive(leftMaster, rightMaster);
   
   public Drivetrain() {
-    leftMaster.configContinuousCurrentLimit(10, 0);
-    leftMaster.configPeakCurrentLimit(15, 0);
-    leftMaster.configPeakCurrentDuration(100, 0);
-    leftMaster.enableCurrentLimit(true);
-
-    rightMaster.configContinuousCurrentLimit(40, 0);
-    rightMaster.configPeakCurrentLimit(60, 0);
-    rightMaster.configPeakCurrentDuration(500, 0);
-    rightMaster.enableCurrentLimit(true);
-
     leftMaster.configSelectedFeedbackSensor(TalonSRXFeedbackDevice.CTRE_MagEncoder_Relative, 0, DriveConstants.TIMEOUT);
     rightMaster.configSelectedFeedbackSensor(TalonSRXFeedbackDevice.CTRE_MagEncoder_Relative, 0, DriveConstants.TIMEOUT);
 
