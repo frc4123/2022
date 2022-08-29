@@ -23,7 +23,7 @@ public class Drivetrain extends SubsystemBase {
   private final WPI_VictorSPX leftFollower = new WPI_VictorSPX(CanIdConstants.LEFT_SLAVE_ID);
   private final WPI_VictorSPX rightFollower = new WPI_VictorSPX(CanIdConstants.RIGHT_SLAVE_ID);
 
-  private final DifferentialDrive differentialDrive = new DifferentialDrive(leftFollower, rightLeader);
+  private final DifferentialDrive differentialDrive = new DifferentialDrive(leftLeader, rightLeader);
   /**
     double max = maxSpeed.getDouble(1.0);
     differentialDrive.arcadeDrive(speed * max, direction * max);
