@@ -14,7 +14,8 @@ public class ShootHighCommand extends CommandBase{
     
     @Override
     public void execute() {
-        shooterSubsystem.setShooterVelo(0.325);
+        //shooterSubsystem.setShooterVelo(0.325);  for competition
+        shooterSubsystem.setShooterVelo(1); //for club carnival
     }
 
     @Override

@@ -11,6 +11,7 @@ import frc.robot.Constants.CanIdConstants;
 public class ElevatorSubsystem extends SubsystemBase{
     private final TalonSRX elev = new TalonSRX(CanIdConstants.ELEVATOR_MASTER_ID);
 
+    /** Creates a new ElevatorSubsystem */
     public ElevatorSubsystem(){
         elev.configOpenloopRamp(1);
         elev.setNeutralMode(NeutralMode.Brake);

@@ -11,6 +11,7 @@ import frc.robot.Constants.CanIdConstants;
 public class ShooterSubsystem extends SubsystemBase{
     private final TalonSRX shooter = new TalonSRX(CanIdConstants.SHOOTER_MASTER_ID);
 
+    /** Creates a new ShooterSubsystem */
     public ShooterSubsystem(){
         shooter.configOpenloopRamp(1);
         shooter.setNeutralMode(NeutralMode.Brake);

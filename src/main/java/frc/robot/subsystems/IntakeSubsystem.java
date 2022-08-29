@@ -11,6 +11,7 @@ import frc.robot.Constants.CanIdConstants;
 public class IntakeSubsystem extends SubsystemBase{
     private final TalonSRX index = new TalonSRX(CanIdConstants.INTAKE_MASTER_ID);
 
+    /** Creates a new IntakeSubsystem */
     public IntakeSubsystem(){
         index.configOpenloopRamp(1);
         index.setNeutralMode(NeutralMode.Brake);
