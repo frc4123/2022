@@ -96,7 +96,7 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return new WaitCommand(.2)
+    return new WaitCommand(.1)
     .andThen(new ShootCommand(shooterSubsystem)).alongWith(new WaitCommand(3)
     .andThen(new ElevatorUpCommand(elevatorSubsystem))).withTimeout(4)
     .andThen(new AutoDriveBackCommand(drivetrain).withTimeout(3.8));
