@@ -1,6 +1,6 @@
 package frc.robot.Main;
 
-import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+//import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 
 public class Constants {
      /** USB ports on the computer */
@@ -55,12 +55,12 @@ public class Constants {
 
         // Note: RIO is always 0
         // Note: PDH is always 1
-        // public static final int RIGHT_LEADER_ID = ? ;
-        // public static final int RIGHT_FOLLOWER_ID = ? ;
-        // public static final int LEFT_LEADER_ID = ? ;
-        // public static final int LEFT_FOLLOWER_ID = ? ;
-        // public static final int SHOOTER_CAN_ID = ?;
-        // public static final int INTAKE_CAN_ID = ? ;
+        public static final int RIGHT_MASTER_ID = 0 ;
+        public static final int RIGHT_SLAVE_ID = 0 ;
+        public static final int LEFT_MASTER_ID = 0 ;
+        public static final int LEFT_SLAVE_ID = 0 ;
+        public static final int SHOOTER_CAN_ID = 0;
+        public static final int INTAKE_CAN_ID = 0 ;
     }
 
 }

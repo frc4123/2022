@@ -1,23 +1,24 @@
 package frc.robot.Main.Commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import frc.robot.Main.Subsystems.Intake;
 
-public class IntakeCommands {
+public class IntakeOut extends CommandBase {
     Intake intake;
 
-    public IntakeCubeIn(Intake intake) {
+    public IntakeOut(Intake intake) {
         this.intake = intake;
-        addRequirements(intake);
+        addRequirements((Subsystem) intake);
     }
 
     @Override
     public void execute() {
-        intake.setIntakeRollerSpeedVelo(-0.4);
+        intake.setIntakeSpeed(-0.4);
     }
 
     @Override
     public void end(boolean interrupted) {
-        intake.setIntakeRollerSpeedakeVelo(0);
+        intake.setIntakeSpeed(0);
     }
 }
